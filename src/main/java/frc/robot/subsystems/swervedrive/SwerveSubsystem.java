@@ -730,4 +730,9 @@ public class SwerveSubsystem extends SubsystemBase
   {
     return swerveDrive;
   }
+
+public void setModuleAngle(double m_angleDegrees) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setModuleAngle'");
+}
 }

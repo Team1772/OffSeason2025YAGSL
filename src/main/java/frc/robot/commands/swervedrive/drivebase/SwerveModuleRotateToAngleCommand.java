@@ -1,5 +1,4 @@
 package frc.robot.commands.swervedrive.drivebase;
-import com.pathplanner.lib.util.PathPlannerLogging;
 import edu.wpi.first.wpilibj2.command.Command;
  // Altere para o nome do seu subsistema
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -30,10 +29,10 @@ public class SwerveModuleRotateToAngleCommand extends Command {
     public void execute() {
         // Chama o método setModuleAngle com o ângulo desejado.
         // A YAGSL cuida de toda a lógica para girar os módulos.
-        m_swerve.getSwerveDrive().getModules()
+        m_swerve.getSwerveDrive().getModules();
         m_swerve.setModuleAngle(m_angleDegrees);
         // Opcional: pode adicionar log para depuração.
-        PathPlannerLogging.logCommand("SwerveModuleRotateToAngleCommand", "Rotating to " + m_angleDegrees + " degrees.");
+        // PathPlannerLogging.logCommand("SwerveModuleRotateToAngleCommand", "Rotating to " + m_angleDegrees + " degrees.");
     }
 
     @Override
