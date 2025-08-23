@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -25,6 +26,8 @@ public class RobotContainer {
 
   final CommandXboxController driverXbox;
   private final SwerveSubsystem drivebase;
+  private final IntakeSubsystem intake;
+
 
   SwerveInputStream driveAngularVelocity;
   SwerveInputStream driveDirectAngle;
@@ -43,6 +46,7 @@ public class RobotContainer {
    public RobotContainer() {
     driverXbox = new CommandXboxController(0);
     drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
+    intake = new IntakeSubsystem();
     
     //Configures swerve input streams
     driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -112,6 +116,8 @@ public class RobotContainer {
       driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverXbox.rightBumper().onTrue(Commands.none());
     }
+
+    driverXbox.a().whileTrue(intake.rodar());
   }
 
   private void configureSimulationBindings() {
