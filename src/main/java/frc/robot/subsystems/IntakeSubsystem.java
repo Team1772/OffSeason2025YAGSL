@@ -42,7 +42,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public Command rodar() {
         return Commands.startEnd(
-            () -> this.setMotores(0.5), 
+            () -> this.setMotores(-0.4), 
             this::stopMotores,
             this);
     }

@@ -50,7 +50,7 @@ public class RobotContainer {
     
     //Configures swerve input streams
     driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
-      () -> driverXbox.getLeftY() * -1,
+      () -> driverXbox.getLeftY() * 1,
       () -> driverXbox.getLeftX() * -1)
       .withControllerRotationAxis(driverXbox::getRightX)
       .deadband(OperatorConstants.DEADBAND)
@@ -110,14 +110,14 @@ public class RobotContainer {
 
     if (!DriverStation.isTest()) {
       driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
+      //driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
       driverXbox.start().whileTrue(Commands.none());
       driverXbox.back().whileTrue(Commands.none());
       driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverXbox.rightBumper().onTrue(Commands.none());
     }
 
-    driverXbox.a().whileTrue(intake.rodar());
+    driverXbox.x().whileTrue(intake.rodar());
   }
 
   private void configureSimulationBindings() {
